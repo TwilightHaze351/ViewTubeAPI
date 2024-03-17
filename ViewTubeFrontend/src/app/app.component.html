@@ -1,0 +1,28 @@
+<!-- Header Component -->
+<header></header>
+
+<!-- Main Content Area -->
+<div class="main-content">
+  <!-- Sidebar Component -->
+  <sidebar></sidebar>
+
+  <!-- Video Display Area -->
+  <div class="video-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<!-- Footer Component -->
+<footer></footer>
+
+<style>
+  .main-content {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .video-content {
+    flex-grow: 1;
+    padding: 20px;
+  }
+</style>
