@@ -1,0 +1,6 @@
+@ViewTubeAPI_HostAddress = http://localhost:5053
+
+GET {{ViewTubeAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
