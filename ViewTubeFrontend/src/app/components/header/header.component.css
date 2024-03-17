@@ -1,0 +1,19 @@
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #ff0000;
+  color: white;
+}
+
+.logo {
+  font-size: 24px;
+  text-decoration: none;
+  color: white;
+}
+
+.search-bar {
+  flex-grow: 1;
+  margin: 0 16px;
+}

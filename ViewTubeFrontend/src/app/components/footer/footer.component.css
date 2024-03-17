@@ -1,0 +1,30 @@
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.footer-section h5 {
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+.footer-section p {
+  margin: 5px 0;
+}
+
+.footer-section a {
+  color: #4fa1f0;
+  text-decoration: none;
+}
+
+  .footer-section a:hover {
+    text-decoration: underline;
+  }

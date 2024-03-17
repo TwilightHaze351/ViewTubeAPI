@@ -1,0 +1,9 @@
+<div class="video-list">
+  <div *ngFor="let video of videos" class="video-item">
+    <img [src]="video.thumbnailUrl" alt="video.title">
+    <div class="video-info">
+      <h3>{{ video.title }}</h3>
+      <p>{{ video.description }}</p>
+    </div>
+  </div>
+</div>

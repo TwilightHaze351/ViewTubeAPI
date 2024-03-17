@@ -1,0 +1,7 @@
+.main-content {
+  display: flex;
+}
+
+router-outlet {
+  flex-grow: 1;
+}
