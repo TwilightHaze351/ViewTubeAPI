@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using ViewTubeAPI.ViewTubeFrontend.src.Data;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,7 +47,12 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddControllers();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Add SPA static files middleware
+builder.Services.AddSpaStaticFiles(configuration =>
+{
+    configuration.RootPath = "ViewTubeFrontend/dist"; // Adjust the path according to your project structure
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -60,6 +66,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
 
 // Enable CORS with the specified policy
 app.UseCors("AllowSpecificOrigin");
@@ -69,5 +76,18 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Use SPA static files middleware
+app.UseSpaStaticFiles();
+
+app.UseSpa(spa =>
+{
+    spa.Options.SourcePath = "ViewTubeFrontend";
+
+    if (app.Environment.IsDevelopment())
+    {
+        spa.UseAngularCliServer(npmScript: "start");
+    }
+});
 
 app.Run();
