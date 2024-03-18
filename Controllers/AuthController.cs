@@ -8,7 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System;
 
-namespace YourNamespace.Controllers
+namespace ViewTubeAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -60,7 +60,7 @@ namespace YourNamespace.Controllers
                 var user = await _userManager.FindByNameAsync(model.UserName);
                 if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
                 {
-                    var token = await GenerateJwtToken(user);
+                    var token = GenerateJwtToken(user);
                     return Ok(new { Status = "Success", Token = token, Message = "Login successful" });
                 }
                 else
@@ -71,15 +71,24 @@ namespace YourNamespace.Controllers
             return BadRequest(ModelState);
         }
 
-        private async Task<string> GenerateJwtToken(IdentityUser user)
+        private string GenerateJwtToken(IdentityUser user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
-            var claims = new List<Claim>
+
+            // Ensure the configuration key exists and is not null
+            var jwtKey = _configuration["Jwt:Key"];
+            if (string.IsNullOrEmpty(jwtKey))
             {
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.NameIdentifier, user.Id)
-            };
+                throw new InvalidOperationException("JWT key is not configured properly.");
+            }
+
+            var key = Encoding.ASCII.GetBytes(jwtKey);
+
+            var claims = new List<Claim>
+    {
+        new Claim(ClaimTypes.Name, user.UserName ?? string.Empty),
+        new Claim(ClaimTypes.NameIdentifier, user.Id ?? string.Empty)
+    };
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {

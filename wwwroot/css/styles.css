@@ -1,0 +1,50 @@
+/* src/styles.css */
+
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.app-header {
+  background-color: #202020;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.app-footer {
+  background-color: #181818;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.app-video-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+}
+
+  .app-video-list .video-item {
+    width: 300px;
+    margin: 10px;
+  }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .app-header {
+    flex-direction: column;
+  }
+
+  .app-video-list {
+    flex-direction: column;
+  }
+
+    .app-video-list .video-item {
+      width: 100%;
+    }
+}
+
+/*# sourceMappingURL=styles.css.map */
